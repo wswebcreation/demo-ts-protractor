@@ -1,0 +1,23 @@
+{
+  "name": "demo-ts-protractor",
+  "version": "0.1.0",
+  "description": "A demo framework setup for Protractor and Sauce Labs written in TypeScript",
+  "main": "index.js",
+  "scripts": {
+    "tsc": "tsc",
+    "pretest": "npm run tsc",
+    "test": "protractor output/protractor.conf.js",
+    "watch": "npm run tsc -- -w"
+  },
+  "author": "wswebcreation",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jasmine": "^2.8.11",
+    "@types/jasminewd2": "^2.0.6",
+    "jasmine": "^3.3.0",
+    "jasmine-spec-reporter": "^4.2.1",
+    "protractor": "^5.4.1",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.1.6"
+  }
+}

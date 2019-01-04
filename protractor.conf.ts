@@ -1,4 +1,4 @@
-import {$, browser, Config, protractor} from 'protractor';
+import {browser, Config} from 'protractor';
 import {SpecReporter} from 'jasmine-spec-reporter';
 
 /**
@@ -21,6 +21,13 @@ export let config: Config = {
 	 * ignored. The tests will be run remotely using Sauce Labs.
 	 */
 	sauceKey: process.env.SAUCE_ACCESS_KEY,
+	/**
+	 * If you run your tests on SauceLabs you can specify the region you want to run your tests
+	 * in via the `sauceRegion` property. Available short handles for regions are:
+	 * us: us-west-1 (default)
+	 * eu: eu-central-1
+	 */
+	sauceRegion: 'eu',
 
 	// ---- To use remote devices via TestObject ---------------------------------
 
@@ -40,7 +47,7 @@ export let config: Config = {
 	 * ]
 	 */
 	specs: [
-		'tests/*.spec.js'
+		'tests/angular.spec.js'
 	],
 
 	// ---------------------------------------------------------------------------
@@ -57,7 +64,7 @@ export let config: Config = {
 			browserName: 'chrome',
 			version: 'latest',
 			platform: 'Windows 10',
-			name: 'demo-ts-protractor',
+			name: 'demo-ts-protractor-angular',
 		}
 	],
 
@@ -102,12 +109,12 @@ export let config: Config = {
 	 */
 	onPrepare: async () => {
 		await browser.waitForAngularEnabled(false);
-
-		const EC = protractor.ExpectedConditions;
-		// Waits for the element with id 'abc' to be visible on the dom.
-		browser.waitForVisible = async (selector: string, timeout: number): Promise<any> => {
-			return browser.wait(EC.visibilityOf($(selector)), timeout);
-		};
+		//
+		// const EC = protractor.ExpectedConditions;
+		// // Waits for the element with id 'abc' to be visible on the dom.
+		// browser.waitForVisible = async (selector: string, timeout: number): Promise<any> => {
+		// 	return browser.wait(EC.visibilityOf($(selector)), timeout);
+		// };
 
 		jasmine.getEnv().addReporter(new SpecReporter({
 			spec: {

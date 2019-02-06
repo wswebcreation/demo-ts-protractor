@@ -14,9 +14,9 @@ describe('Login', () => {
 		await element(by.css('[type="submit"]')).click();
 
 		// Synchronize on the next page and make sure it loads
-		await browser.waitForVisible('.inventory_container', 3000);
+		await browser.waitForVisible('.inventory_list', 3000);
 
 		// Assert that the inventory page displayed appropriately
-		expect(await element(by.css('.inventory_container')).isDisplayed()).toEqual(true);
+		expect(await element(by.css('.inventory_list')).isDisplayed()).toEqual(true);
 	});
 });

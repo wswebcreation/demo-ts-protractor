@@ -1,8 +1,8 @@
 # TypeScript demonstration scripts for Protractor
 
-Here you'll find some sample code on how to get started with Protractor and Sauce Labs, written with TypeScript.
+Here you'll find some sample code on how to get started with Protractor and parallel execution on Sauce Labs. The tests are written with TypeScript.
 
-> **Note 1:** The code doesn't hold a page-object model, it is purely to setup a Protractor project together with Sauce Labs
+> **Note 1:** This project holds a JASMINE and a CUCUMBERJS setup, see the configuration files in the root of this project and the test folders int he `./tests/`-folder for all the tests
 
 > **Note 2:** This setup uses TypeScript, the main language for developing Angular-projects. By running the test command, see below, all the files, including the config file, are being transpiled to standard JS files.
 
@@ -12,38 +12,109 @@ Make sure you have a valid NodeJS environment set up. Then:
 - Clone the project to your machine with `git clone https://github.com/saucelabs-training/demo-ts-protractor.git`
 - Install all dependencies with `npm install`
 - After all dependencies are installed make sure you've setup your Sauce Labs account with a username and an access key, save them to your environment variables with the name `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY`, or `RDC_USERNAME` and `RDC_ACCESS_KEY` for connecting to the Real Device Cloud.
-- Run `npm test` to run the test against your cloud
+- Run `npm run test.jasmine` to run the Jasmine tests against your cloud
+- Run `npm run test.cucumber` to run the CucumberJS tests against your cloud
 
-After running a test you will get a console log like this
+After running a test you will get a console log like this for Jasmine
 
 ```log
-➜  demo-ts-protractor npm t                                       
+➜  demo-ts-protractor git:(master) ✗ npm run test.jasmine
 
-> demo-ts-protractor@0.1.0 pretest /Users/demo-ts-protractor
+> demo-ts-protractor@0.2.0 pretest.jasmine /Users/wswebcreation/demo-ts-protractor
 > npm run tsc
 
 
-> demo-ts-protractor@0.1.0 tsc /Users/demo-ts-protractor
+> demo-ts-protractor@0.2.0 tsc /Users/wswebcreation/demo-ts-protractor
 > tsc
 
 
-> demo-ts-protractor@0.1.0 test /Users/demo-ts-protractor
-> protractor output/protractor.conf.js
+> demo-ts-protractor@0.2.0 test.jasmine /Users/wswebcreation/demo-ts-protractor
+> protractor output/protractor.jasmine.conf.js
 
-[11:27:50] I/launcher - Running 1 instances of WebDriver
-[11:27:50] I/sauce - Using SauceLabs selenium server at https://ondemand.saucelabs.com:443/wd/hub
-Jasmine started
-[11:28:14] W/element - more than one element found for locator By(css selector, #inventory_container) - the first result will be used
-[11:28:16] W/element - more than one element found for locator By(css selector, #inventory_container) - the first result will be used
+[09:30:24] I/launcher - Running 8 instances of WebDriver
+.......[09:31:04] I/testLogger - 
+------------------------------------
 
-  Login
-    ✓ should be able to login with a standard user
+[09:31:04] I/testLogger - [chrome latest Windows 10 #01-2] PID: 27588
+[chrome latest Windows 10 #01-2] Specs: /Users/wswebcreation/demo-ts-protractor/output/tests/jasmine/swag.list.spec.js
+[chrome latest Windows 10 #01-2] 
+[chrome latest Windows 10 #01-2] [09:30:24] I/sauce - Using SauceLabs selenium server at https://ondemand.saucelabs.com:443/wd/hub
+[chrome latest Windows 10 #01-2] Jasmine started
+[chrome latest Windows 10 #01-2] 
+[chrome latest Windows 10 #01-2]   Swag List
+[chrome latest Windows 10 #01-2]     ✓ should validate that all products are present
+[chrome latest Windows 10 #01-2]     ✓ should validate that a product can be added to a cart
+[chrome latest Windows 10 #01-2] 
+[chrome latest Windows 10 #01-2] Executed 2 of 2 specs SUCCESS in 27 secs.
+[chrome latest Windows 10 #01-2] [09:31:02] I/sauce - SauceLabs results available at http://saucelabs.com/jobs/5b60f65fcf3c480ab89d504e9c36665e
 
-Executed 1 of 1 spec SUCCESS in 16 secs.
-[11:28:17] I/sauce - SauceLabs results available at http://saucelabs.com/jobs/db36a94175cd424c9e371b401ebc5a2c
-[11:28:18] I/launcher - 0 instance(s) of WebDriver still running
-[11:28:18] I/launcher - chromelatest #01 passed
+[09:31:04] I/testLogger - 
 
+//...
+
+[09:32:15] I/testLogger - 
+
+[09:32:15] I/launcher - 0 instance(s) of WebDriver still running
+[09:32:15] I/launcher - chromelatest #01-2 passed
+[09:32:15] I/launcher - firefoxlatest #11-3 passed
+[09:32:15] I/launcher - firefoxlatest #11-2 passed
+[09:32:15] I/launcher - chromelatest #01-3 passed
+[09:32:15] I/launcher - chromelatest #01-0 passed
+[09:32:15] I/launcher - firefoxlatest #11-0 passed
+[09:32:15] I/launcher - chromelatest #01-1 passed
+[09:32:15] I/launcher - firefoxlatest #11-1 passed
+```
+
+For CucumberJS you will get a console log like this. The link will show you a nice CucumberJS report
+
+```log
+➜  demo-ts-protractor git:(master) ✗ npm run test.cucumber
+
+> demo-ts-protractor@0.2.0 pretest.cucumber /Users/wswebcreation/demo-ts-protractor
+> npm run tsc
+
+
+> demo-ts-protractor@0.2.0 tsc /Users/wswebcreation/demo-ts-protractor
+> tsc
+
+
+> demo-ts-protractor@0.2.0 test.cucumber /Users/wswebcreation/demo-ts-protractor
+> protractor output/protractor.cucumber.conf.js
+
+[09:23:24] I/launcher - Running 6 instances of WebDriver
+...........[09:24:12] I/testLogger -
+------------------------------------
+
+[09:24:12] I/testLogger - [chrome latest Windows 10 #01-2] PID: 27362
+[chrome latest Windows 10 #01-2] Specs: /Users/wswebcreation/demo-ts-protractor/tests/cucumberjs/features/swag.list.feature
+[chrome latest Windows 10 #01-2]
+[chrome latest Windows 10 #01-2] [09:23:24] I/sauce - Using SauceLabs selenium server at https://ondemand.saucelabs.com:443/wd/hub
+[chrome latest Windows 10 #01-2] ...........
+[chrome latest Windows 10 #01-2]
+[chrome latest Windows 10 #01-2] 2 scenarios (2 passed)
+[chrome latest Windows 10 #01-2] 7 steps (7 passed)
+[chrome latest Windows 10 #01-2] 0m31.337s
+[chrome latest Windows 10 #01-2] [09:24:10] I/sauce - SauceLabs results available at http://saucelabs.com/jobs/96f9b10b8d70482b8a577302017da2d8
+[chrome latest Windows 10 #01-2]
+[chrome latest Windows 10 #01-2]
+[chrome latest Windows 10 #01-2] =====================================================================================
+[chrome latest Windows 10 #01-2]     Multiple Cucumber HTML report generated in:
+[chrome latest Windows 10 #01-2]
+[chrome latest Windows 10 #01-2]     /Users/wswebcreation/demo-ts-protractor/.tmp/report/index.html
+[chrome latest Windows 10 #01-2] =====================================================================================
+[chrome latest Windows 10 #01-2]
+
+//.........
+
+[09:25:15] I/testLogger -
+
+[09:25:15] I/launcher - 0 instance(s) of WebDriver still running
+[09:25:15] I/launcher - chromelatest #01-2 passed
+[09:25:15] I/launcher - firefoxlatest #11-0 passed
+[09:25:15] I/launcher - firefoxlatest #11-2 passed
+[09:25:15] I/launcher - chromelatest #01-0 passed
+[09:25:15] I/launcher - chromelatest #01-1 passed
+[09:25:15] I/launcher - firefoxlatest #11-1 passed
 ```
 
 > **Note:**

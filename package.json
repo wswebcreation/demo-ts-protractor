@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "tsc": "tsc",
+    "pretest.cucumber": "npm run tsc",
     "pretest.jasmine": "npm run tsc",
     "test.jasmine": "protractor output/protractor.jasmine.conf.js",
     "test.cucumber": "protractor output/protractor.cucumber.conf.js",

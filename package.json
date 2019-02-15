@@ -1,22 +1,33 @@
 {
   "name": "demo-ts-protractor",
-  "version": "0.1.0",
-  "description": "A demo framework setup for Protractor and Sauce Labs written in TypeScript",
+  "version": "0.2.0",
+  "description": "A demo framework setup for Protractor and Sauce Labs written in TypeScript with Jasmine",
   "main": "index.js",
   "scripts": {
     "tsc": "tsc",
-    "pretest": "npm run tsc",
-    "test": "protractor output/protractor.conf.js",
+    "pretest.cucumber": "npm run tsc",
+    "pretest.jasmine": "npm run tsc",
+    "test.jasmine": "protractor output/protractor.jasmine.conf.js",
+    "test.cucumber": "protractor output/protractor.cucumber.conf.js",
     "watch": "npm run tsc -- -w"
   },
   "author": "wswebcreation",
   "license": "ISC",
   "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/chai-as-promised": "^7.1.0",
+    "@types/cucumber": "^4.0.5",
     "@types/jasmine": "^2.8.11",
     "@types/jasminewd2": "^2.0.6",
+    "@types/node": "^10.12.18",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "cucumber": "^5.1.0",
     "jasmine": "^3.3.0",
     "jasmine-spec-reporter": "^4.2.1",
-    "protractor": "^5.4.1",
+    "protractor": "^5.4.2",
+    "protractor-cucumber-framework": "^6.1.1",
+    "protractor-multiple-cucumber-html-reporter-plugin": "^1.8.0",
     "ts-node": "^7.0.1",
     "typescript": "^3.1.6"
   }

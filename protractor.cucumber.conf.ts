@@ -1,5 +1,5 @@
 import {browser, Config} from 'protractor';
-import {SpecReporter} from 'jasmine-spec-reporter';
+import {resolve} from 'path';
 
 /**
  * See the config file for all the options, this config file holds the basics
@@ -48,7 +48,7 @@ export let config: Config = {
 	 * ]
 	 */
 	specs: [
-		'tests/jasmine/*.spec.js'
+		resolve(process.cwd(), './tests/cucumberjs/features/*.feature'),
 	],
 
 	// ---------------------------------------------------------------------------
@@ -65,7 +65,7 @@ export let config: Config = {
 			browserName: 'chrome',
 			version: 'latest',
 			platform: 'Windows 10',
-			name: 'demo-protractor-jasmine-ts',
+			name: 'demo-protractor-cucumber-ts',
 			/**
 			 * If this is set to be true, specs will be sharded by file (i.e. all
 			 * files to be run by this set of capabilities will run in parallel).
@@ -79,12 +79,24 @@ export let config: Config = {
 			 * Default is 1.
 			 */
 			maxInstances: 25,
+
+			// Custom for testing and reporting
+			metadata: {
+				browser: {
+					name: 'chrome'
+				},
+				platform: {
+					name: 'Windows',
+					version: '10'
+				},
+				device: 'Cloud machine',
+			}
 		},
 		{
 			browserName: 'firefox',
 			version: 'latest',
 			platform: 'Windows 10',
-			name: 'demo-protractor-jasmine-ts',
+			name: 'demo-protractor-cucumber-ts',
 			/**
 			 * If this is set to be true, specs will be sharded by file (i.e. all
 			 * files to be run by this set of capabilities will run in parallel).
@@ -98,6 +110,18 @@ export let config: Config = {
 			 * Default is 1.
 			 */
 			maxInstances: 25,
+
+			// Custom for testing and reporting
+			metadata: {
+				browser: {
+					name: 'firefox'
+				},
+				platform: {
+					name: 'Windows',
+					version: '10'
+				},
+				device: 'Cloud machine',
+			}
 		}
 	],
 
@@ -142,12 +166,6 @@ export let config: Config = {
 	 */
 	onPrepare: async () => {
 		await browser.waitForAngularEnabled(false);
-
-		jasmine.getEnv().addReporter(new SpecReporter({
-			spec: {
-				displayStacktrace: true
-			}
-		}));
 	},
 
 	// ---------------------------------------------------------------------------
@@ -172,18 +190,42 @@ export let config: Config = {
 	 * Mocha has limited support. You will need to include your
 	 * own assertion framework (such as Chai) if working with Mocha.
 	 */
-	framework: 'jasmine',
+	framework: 'custom',
+	frameworkPath: require.resolve('protractor-cucumber-framework'),
+	cucumberOpts: {
+		// All files are compiled before they are used, so they can be found in the `output`-folder
+		require: [
+			resolve(process.cwd(), './output/tests/cucumberjs/**/after.scenario.js'),
+			resolve(process.cwd(), './output/tests/cucumberjs/**/cucumber.config.js'),
+			resolve(process.cwd(), './output/tests/cucumberjs/steps/*.steps.js')
+		],
+		format: ['json:.tmp/results.json'],
+		tags: []
+	},
+	// From `protractor-cucumber-framework`, allows cucumber to handle the 199 exception and record it appropriately
+	ignoreUncaughtExceptions: true,
 
 	/**
-	 * Options to be passed to jasmine.
-	 *
-	 * See https://github.com/jasmine/jasmine-npm/blob/master/lib/jasmine.js
-	 * for the exact options available.
+	 * The timeout in milliseconds for each script run on the browser. This
+	 * should be longer than the maximum time your application needs to
+	 * stabilize between tasks.
 	 */
-	jasmineNodeOpts: {
-		print: () => {
+	allScriptsTimeout: 60000,
+
+	/**
+	 * See docs/plugins.md
+	 */
+	plugins: [
+		{
+			package: 'protractor-multiple-cucumber-html-reporter-plugin',
+			options: {
+				automaticallyGenerateReport: true,
+				jsonOutputPath: '.tmp/json-output',
+				removeExistingJsonReportFile: true,
+				removeOriginalJsonReportFile: true
+			}
 		}
-	},
+	],
 
 	/**
 	 * Enable/disable the WebDriver Control Flow.

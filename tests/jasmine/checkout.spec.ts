@@ -5,7 +5,7 @@ import CheckoutPageOne from '../page-objects/checkoutPageOne';
 import CheckoutPageTwo from '../page-objects/checkoutPageTwo';
 import {browser} from 'protractor';
 
-describe('Parallelization - Checkout', () => {
+describe('Checkout a product', () => {
 	beforeEach(async () => {
 		// Navigate to the url of the Sauce Labs Sample app
 		await browser.get('/');
@@ -17,10 +17,10 @@ describe('Parallelization - Checkout', () => {
 
 		// Now got to the cart page
 		await browser.get('/cart.html');
+		await CartContent.waitForIsDisplayed();
 	});
 
 	it('should validate that user can checkout', async () => {
-		await CartContent.waitForIsDisplayed();
 		await CartContent.goToCheckout();
 
 		// Submit personal info

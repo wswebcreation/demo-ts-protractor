@@ -6,7 +6,9 @@
   "scripts": {
     "tsc": "tsc",
     "pretest": "npm run tsc",
+    "pretest.parallel": "npm run tsc",
     "test": "protractor output/protractor.conf.js",
+    "test.parallel": "protractor output/protractor.parallel.conf.js",
     "watch": "npm run tsc -- -w"
   },
   "author": "wswebcreation",

@@ -20,7 +20,7 @@ export let config: Config = {
 	 * If the sauceUser and sauceKey are specified, seleniumServerJar will be
 	 * ignored. The tests will be run remotely using Sauce Labs.
 	 */
-	sauceKey: process.env.SAUCE_ACCESS_KEY,
+	sauceKey: process.env.SAUCE_ACCESS_KEY_EU,
 	/**
 	 * If you run your tests on SauceLabs you can specify the region you want to run your tests
 	 * in via the `sauceRegion` property. Available short handles for regions are:
@@ -29,10 +29,10 @@ export let config: Config = {
 	 */
 	sauceRegion: 'eu',
 
-	// ---- To use remote devices via TestObject ---------------------------------
-
-	// testobjectUser: process.env.RDC_USERNAME,
-	// testobjectKey: process.env.RDC_ACCESS_KEY,
+	/**
+	 * Use sauceBuild if you want to group test capabilites by a build ID
+	 */
+	sauceBuild: 'Demo - serial',
 
 	// ---------------------------------------------------------------------------
 	// ----- What tests to run ---------------------------------------------------
@@ -67,6 +67,13 @@ export let config: Config = {
 			name: 'demo-ts-protractor-angular',
 		}
 	],
+
+	/**
+	 * Maximum number of total browser sessions to run. Tests are queued in
+	 * sequence if number of browser sessions is limited by this parameter.
+	 * Use a number less than 1 to denote unlimited. Default is unlimited.
+	 */
+	maxSessions: 100,
 
 	// ---------------------------------------------------------------------------
 	// ----- Global test information
@@ -108,13 +115,16 @@ export let config: Config = {
 	 *    });
 	 */
 	onPrepare: async () => {
-		await browser.waitForAngularEnabled(false);
-		//
+		// This is the command to use to disable waitForAngular
+		// await browser.waitForAngularEnabled(false);
+
 		// const EC = protractor.ExpectedConditions;
 		// // Waits for the element with id 'abc' to be visible on the dom.
 		// browser.waitForVisible = async (selector: string, timeout: number): Promise<any> => {
 		// 	return browser.wait(EC.visibilityOf($(selector)), timeout);
 		// };
+		//
+		// await browser.waitForVisible('#id', 10000)
 
 		jasmine.getEnv().addReporter(new SpecReporter({
 			spec: {

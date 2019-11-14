@@ -11,24 +11,26 @@ export let config: Config = {
 	// ---------------------------------------------------------------------------
 	// ---- To use remote browsers via Sauce Labs --------------------------------
 
-	/**
-	 * If the sauceUser and sauceKey are specified, seleniumServerJar will be
-	 * ignored. The tests will be run remotely using Sauce Labs.
-	 */
-	sauceUser: process.env.SAUCE_USERNAME,
-	/**
-	 * If the sauceUser and sauceKey are specified, seleniumServerJar will be
-	 * ignored. The tests will be run remotely using Sauce Labs.
-	 */
-	sauceKey: process.env.SAUCE_ACCESS_KEY,
+	// /**
+	//  * If the sauceUser and sauceKey are specified, seleniumServerJar will be
+	//  * ignored. The tests will be run remotely using Sauce Labs.
+	//  */
+	// sauceUser: process.env.SAUCE_USERNAME,
+	// /**
+	//  * If the sauceUser and sauceKey are specified, seleniumServerJar will be
+	//  * ignored. The tests will be run remotely using Sauce Labs.
+	//  */
+	// sauceKey: process.env.SAUCE_ACCESS_KEY,
 
-	/**
-	 * If you run your tests on SauceLabs you can specify the region you want to run your tests
-	 * in via the `sauceRegion` property. Available short handles for regions are:
-	 * us: us-west-1 (default)
-	 * eu: eu-central-1
-	 */
-	sauceRegion: 'us',
+	seleniumAddress: 'https://appium.testobject.com/wd/hub',
+
+	// /**
+	//  * If you run your tests on SauceLabs you can specify the region you want to run your tests
+	//  * in via the `sauceRegion` property. Available short handles for regions are:
+	//  * us: us-west-1 (default)
+	//  * eu: eu-central-1
+	//  */
+	// sauceRegion: 'us',
 
 	// ---- To use remote devices via TestObject ---------------------------------
 
@@ -61,43 +63,47 @@ export let config: Config = {
 	 * If this is specified, capabilities will be ignored.
 	 */
 	multiCapabilities: [
+		// {
+		// 	browserName: 'chrome',
+		// 	version: 'latest-2',
+		// 	platform: 'Windows 10',
+		// 	name: 'demo-protractor-jasmine-ts',
+		// 	/**
+		// 	 * If this is set to be true, specs will be sharded by file (i.e. all
+		// 	 * files to be run by this set of capabilities will run in parallel).
+		// 	 * Default is false.
+		// 	 */
+		// 	shardTestFiles: true,
+		//
+		// 	/**
+		// 	 * Maximum number of browser instances that can run in parallel for this
+		// 	 * set of capabilities. This is only needed if shardTestFiles is true.
+		// 	 * Default is 1.
+		// 	 */
+		// 	maxInstances: 25,
+		// },
+		// {
+		// 	browserName: 'firefox',
+		// 	version: 'latest',
+		// 	platform: 'Windows 10',
+		// 	name: 'demo-protractor-jasmine-ts',
+		// 	/**
+		// 	 * If this is set to be true, specs will be sharded by file (i.e. all
+		// 	 * files to be run by this set of capabilities will run in parallel).
+		// 	 * Default is false.
+		// 	 */
+		// 	shardTestFiles: true,
+		//
+		// 	/**
+		// 	 * Maximum number of browser instances that can run in parallel for this
+		// 	 * set of capabilities. This is only needed if shardTestFiles is true.
+		// 	 * Default is 1.
+		// 	 */
+		// 	maxInstances: 25,
+		// }
 		{
-			browserName: 'chrome',
-			version: 'latest',
-			platform: 'Windows 10',
-			name: 'demo-protractor-jasmine-ts',
-			/**
-			 * If this is set to be true, specs will be sharded by file (i.e. all
-			 * files to be run by this set of capabilities will run in parallel).
-			 * Default is false.
-			 */
-			shardTestFiles: true,
-
-			/**
-			 * Maximum number of browser instances that can run in parallel for this
-			 * set of capabilities. This is only needed if shardTestFiles is true.
-			 * Default is 1.
-			 */
-			maxInstances: 25,
-		},
-		{
-			browserName: 'firefox',
-			version: 'latest',
-			platform: 'Windows 10',
-			name: 'demo-protractor-jasmine-ts',
-			/**
-			 * If this is set to be true, specs will be sharded by file (i.e. all
-			 * files to be run by this set of capabilities will run in parallel).
-			 * Default is false.
-			 */
-			shardTestFiles: true,
-
-			/**
-			 * Maximum number of browser instances that can run in parallel for this
-			 * set of capabilities. This is only needed if shardTestFiles is true.
-			 * Default is 1.
-			 */
-			maxInstances: 25,
+			testobject_api_key   :   'foo',
+			deviceName: 'iPhone_SE_POC119'
 		}
 	],
 

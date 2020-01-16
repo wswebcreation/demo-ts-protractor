@@ -1,3 +1,14 @@
+# Important News
+If you look at Protractor you can get the feeling that, in spite of all the effort that the Open Source Community is putting in it, it is not being maintained by Google anymore.
+To be honest, I'm pretty sure about it. If you look at the facts, see [here](https://github.com/angular/protractor/graphs/contributors), you will notice that:
+- the amount of issues is increasing
+- the amount of PR's is increasing
+- the activity in the project is decreasing
+
+This is not giving me a good feeling. As a contributor to the Protractor project in the last years, I also have the feeling that there won't be a big chance that this is going to change.
+ 
+I'm not the only one who thinks about Protractor like this, please take a look at [this great article](https://dev.to/davert/5-reasons-you-should-not-use-protractor-in-2019-3l4b) which might also give you some insights.
+
 # TypeScript demonstration scripts for Protractor
 
 Here you'll find some sample code on how to get started with Protractor and parallel execution on Sauce Labs. The tests are written with TypeScript.

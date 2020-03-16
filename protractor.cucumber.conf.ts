@@ -43,7 +43,7 @@ export let config: Config = {
 	 * ]
 	 */
 	specs: [
-		resolve(process.cwd(), './tests/cucumberjs/features/*.feature'),
+		resolve(process.cwd(), './tests/cucumberjs/features/login.feature'),
 	],
 
 	// ---------------------------------------------------------------------------
@@ -191,6 +191,7 @@ export let config: Config = {
 		// All files are compiled before they are used, so they can be found in the `output`-folder
 		require: [
 			resolve(process.cwd(), './output/tests/cucumberjs/**/after.scenario.js'),
+			resolve(process.cwd(), './output/tests/cucumberjs/**/before.scenario.js'),
 			resolve(process.cwd(), './output/tests/cucumberjs/**/cucumber.config.js'),
 			resolve(process.cwd(), './output/tests/cucumberjs/steps/*.steps.js')
 		],

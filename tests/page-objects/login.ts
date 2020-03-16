@@ -23,7 +23,7 @@ class LoginScreen extends Base {
 	}
 
 	get loginButton(): ElementFinder {
-		return $('.login-button');
+		return $('.btn_action');
 	}
 
 	get errorMessage(): ElementFinder {

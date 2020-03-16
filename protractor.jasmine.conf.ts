@@ -28,12 +28,7 @@ export let config: Config = {
 	 * us: us-west-1 (default)
 	 * eu: eu-central-1
 	 */
-	sauceRegion: 'us',
-
-	// ---- To use remote devices via TestObject ---------------------------------
-
-	// testobjectUser: process.env.RDC_USERNAME,
-	// testobjectKey: process.env.RDC_ACCESS_KEY,
+	sauceRegion: 'eu',
 
 	// ---------------------------------------------------------------------------
 	// ----- What tests to run ---------------------------------------------------
@@ -48,7 +43,7 @@ export let config: Config = {
 	 * ]
 	 */
 	specs: [
-		'tests/jasmine/*.spec.js'
+		'tests/jasmine/*.spec.js',
 	],
 
 	// ---------------------------------------------------------------------------

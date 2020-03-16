@@ -29,7 +29,7 @@ class CheckoutPageTwo extends Base {
 	}
 
 	get finishButton(): ElementFinder {
-		return $('.cart_checkout_link');
+		return $('.cart_button');
 	}
 
 	get swagItems(): ElementArrayFinder {

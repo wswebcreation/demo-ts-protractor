@@ -18,7 +18,7 @@ class CheckoutPageOne extends Base {
 	}
 
 	get continueCheckoutButton(): ElementFinder {
-		return $('.cart_checkout_link');
+		return $('.cart_button');
 	}
 
 	get firstName(): ElementFinder {

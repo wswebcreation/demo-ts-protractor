@@ -38,14 +38,14 @@ class InventoryListScreen extends Base {
 	 * Add a swag items to the cart
 	 */
 	async addSwagItemToCart(needle: string | number): Promise<void> {
-		return (await this.swagItem(needle)).$('.add-to-cart-button').click();
+		return (await this.swagItem(needle)).$('.btn_primary.btn_inventory').click();
 	}
 
 	/**
 	 * Remove a swag items from the cart
 	 */
 	async removeSwagItemFromCart(needle: string | number): Promise<void> {
-		return (await this.swagItem(needle)).$('.remove-from-cart-button').click();
+		return (await this.swagItem(needle)).$('.btn_secondary.btn_inventory').click();
 	}
 
 	/**

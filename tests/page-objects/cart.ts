@@ -13,11 +13,11 @@ class CartContent extends Base {
 	}
 
 	get checkoutButton(): ElementFinder {
-		return $('.cart_checkout_link');
+		return $('.checkout_button');
 	}
 
 	get continueShoppingButton(): ElementFinder {
-		return $('.cart_cancel_link');
+		return $('.btn_secondary');
 	}
 
 	get swagItems(): ElementArrayFinder {
